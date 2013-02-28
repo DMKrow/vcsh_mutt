@@ -1,1 +1,69 @@
+#set mbox_type=Maildir
+#set folder="~/Maildir"
+#set mask="!^\\.[^.]"
+#set mbox="~/Maildir"
+#set record="+.Sent"
+#set postponed="+.Drafts"
+#set spoolfile="~/Maildir"
+set record="+sent"
+set postponed="drafts"
+
+#Group definitions
+source "~/.mutt_groups"
+
+#Location specific
+source "~/.mutt_work"
+
+color normal    white default 
+color attachment brightyellow default 
+color hdrdefault cyan default 
+color indicator default green 
+color markers   brightred default 
+color quoted    green default 
+color signature cyan default 
+color status    brightwhite green 
+color tilde     blue default 
+color tree      red default 
+
+color index     red default ~D 
+color index     magenta default ~T 
+color index     brightblue default '~F'
+
+#color header   brightgreen black ^From: 
+#color header   brightcyan black ^To: 
+#color header   brightcyan black ^Reply-To: 
+#color header   brightcyan black ^Cc: 
+#color header   brightblue black ^Subject: 
+color body     brightred black [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+ 
+color body     brightblue black (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+
+
+bind pager j next-line
+bind pager k previous-line
+bind editor <Tab> complete-query
+bind browser $ check-new
+
+set abort_nosubject=yes
+set postpone=ask-yes
+set print=ask-yes
+unset edit_headers
+set fast_reply=yes # prompt for recipients and subject are skipped
+set pager_index_lines=5
+set xterm_set_titles=yes       # have mutt update the shell title bar
+set xterm_title="%f"           # set shell title bar to mailbox name
+set move=no
+set sort_browser=reverse-date
+set sort=threads
+
 auto_view text/html
+
+# better forwarding
+set mime_forward=ask-yes
+# addressbook
+#set query_command="abook --mutt-query '%s'"
+set query_command="lbdbq %s"
+macro index a     "|abook --add-email\n" 'add sender to abook'
+macro pager a     "|abook --add-email\n" 'add sender to abook'
+macro index ,s '<save-message>=status<enter>'  "Dump to status folder"
+
+# editor settings
+set editor="vim -c \"setlocal spell spelllang=en_us\""
