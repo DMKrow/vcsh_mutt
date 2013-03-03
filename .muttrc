@@ -8,11 +8,8 @@
 set record="+sent"
 set postponed="drafts"
 
-#Group definitions
-source "~/.mutt_groups"
-
 #Location specific
-source "~/.mutt_work"
+source "~/.mutt_local"
 
 color normal    white default 
 color attachment brightyellow default 
