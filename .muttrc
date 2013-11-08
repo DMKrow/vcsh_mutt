@@ -38,6 +38,8 @@ bind pager j next-line
 bind pager k previous-line
 bind editor <Tab> complete-query
 bind browser $ check-new
+# unbind problematic keys
+bind index,pager \# noop
 
 set abort_nosubject=yes
 set postpone=ask-yes
@@ -63,4 +65,4 @@ macro pager a     "|abook --add-email\n" 'add sender to abook'
 macro index ,s '<save-message>=status<enter>'  "Dump to status folder"
 
 # editor settings
-set editor="vim -c \"setlocal spell spelllang=en_us\""
+set editor="vim -c \"setlocal spell spelllang=en_us\" -c \"set complete-=k complete+=k\""
