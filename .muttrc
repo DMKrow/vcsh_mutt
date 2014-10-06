@@ -55,6 +55,10 @@ set sort=threads
 
 auto_view text/html
 
+# speed up folder change
+set sleep_time = 0
+#set header_cache="/tmp/.mutt_cache"
+
 # better forwarding
 set mime_forward=ask-yes
 # addressbook
